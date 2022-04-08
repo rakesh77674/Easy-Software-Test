@@ -17,8 +17,9 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/',[ProductController::class,'index'])->name('/');
 Route::get('/add-product',[ProductController::class,'create'])->name('/add-product');
-Route::get('/add-product',[ProductController::class,'store'])->name('/add-product');
+Route::post('/productadd',[ProductController::class,'store'])->name('/productadd');
 
 
 
-Route::get('/add-category',[CategoryController::class,'create'])->name('/add-product');
+Route::get('/add-category',[CategoryController::class,'create'])->name('/add-category');
+Route::post('/categoryadd',[CategoryController::class,'store'])->name('/categoryadd');

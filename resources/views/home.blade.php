@@ -22,26 +22,29 @@
         <th scope="col">Action</th>
     </tr>
     </thead>
-    <tbody>   
-    <tr>     
-        <td></td>
-        <td></td>
-        <td></td>
-        {{-- <td ><img height = "50" width = "50" margin = "12"src = "/doctorimage/{{$doctor->image}}"></td> --}}
-        <td>
-        <div>
-        <form method = "post" action = "">
-        @csrf
-        @method('delete')
-        <button type="submit" class="btn btn-warning" style ="background: red; color:white; width: 70%">Delete</button>
-        </form>
-        <form method = "post" action = "">
-        @csrf
-        @method('put')
-        <button type="submit" class="btn btn-primary" style = "width: 68%; padding: 2px; margin: 2px;height: 35px;">Update</button>
-        </form>
-    </div>
-        </td>          
-    </tr>
+    <tbody>    
+        @foreach ($products as $product)
+        <tr>     
+            <td>{{$product->product_name}}</td>
+            <td ><img height = "50" width = "50" margin = "12"src = "/productimage/{{$product->image}}"></td>
+            <td>{{$product->category->name}}</td>
+            {{-- <td ><img height = "50" width = "50" margin = "12"src = "/doctorimage/{{$doctor->image}}"></td> --}}
+            <td>
+            <div>
+            <form method = "post" action = "">
+            @csrf
+            @method('delete')
+            <button type="submit" class="btn btn-warning" style ="background: red; color:white; width: 70%">Delete</button>
+            </form>
+            <form method = "post" action = "">
+            @csrf
+            @method('put')
+            <button type="submit" class="btn btn-primary" style = "width: 68%; padding: 2px; margin: 2px;height: 35px;">Update</button>
+            </form>
+        </div>
+            </td>          
+        </tr>
+        @endforeach   
+        
     </tbody>
     </table>
