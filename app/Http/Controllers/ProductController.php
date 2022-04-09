@@ -66,9 +66,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Request $request, $id)
     {
-        //
+        $category = Category::all();
+        $editproduct = Product::find($id);
+        return view("Products.edit", compact('editproduct','category'));
     }
 
     /**
@@ -78,9 +80,18 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $Product = Product::find($id);
+        $Product->product_name = $request->product_name;
+        $Product->categories_id = $request->categories_id;
+        $image = $request->image;
+        $imageName =time().' . '.$image->getClientOriginalExtension();
+        $request->image->move('productimage', $imageName);
+        $Product->image = $imageName;  
+        $Product->save();
+        return redirect('/');
+
     }
 
     /**
@@ -89,8 +100,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request, $id)
     {
-        //
+        Product::find($id)->delete();
+        return Redirect("/");
     }
 }

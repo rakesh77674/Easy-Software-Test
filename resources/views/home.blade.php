@@ -19,7 +19,7 @@
         <th scope="col">Product Name</th>
         <th scope="col">image</th>
         <th scope="col">Category</th>
-        <th scope="col">Action</th>
+        <th scope="col">Edit</th>
     </tr>
     </thead>
     <tbody>    
@@ -31,14 +31,13 @@
             {{-- <td ><img height = "50" width = "50" margin = "12"src = "/doctorimage/{{$doctor->image}}"></td> --}}
             <td>
             <div>
-            <form method = "post" action = "">
+            <form method = "post" action = "{{url('/deleteproduct', $product->id)}}">
             @csrf
             @method('delete')
             <button type="submit" class="btn btn-warning" style ="background: red; color:white; width: 70%">Delete</button>
             </form>
-            <form method = "post" action = "">
+            <form method = "get" action = "{{url('/editproduct', $product->id)}}">
             @csrf
-            @method('put')
             <button type="submit" class="btn btn-primary" style = "width: 68%; padding: 2px; margin: 2px;height: 35px;">Update</button>
             </form>
         </div>

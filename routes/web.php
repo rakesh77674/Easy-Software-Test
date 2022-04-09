@@ -18,6 +18,9 @@ use App\Http\Controllers\CategoryController;
 Route::get('/',[ProductController::class,'index'])->name('/');
 Route::get('/add-product',[ProductController::class,'create'])->name('/add-product');
 Route::post('/productadd',[ProductController::class,'store'])->name('/productadd');
+Route::delete('/deleteproduct/{id}',[ProductController::class,'destroy'])->name('/deleteproduct');
+Route::get('/editproduct/{id}',[ProductController::class,'edit'])->name('/editproduct');
+Route::put('/updateproduct/{id}',[ProductController::class,'update'])->name('/updateproduct');
 
 
 
